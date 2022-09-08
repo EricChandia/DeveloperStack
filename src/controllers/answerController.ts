@@ -11,6 +11,6 @@ export async function createAnswer(req: Request, res: Response) {
 
   await answerService.createAnswer(answerData);
 
-  res.status(201);
+  res.sendStatus(201);
 
 }
