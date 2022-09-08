@@ -1,15 +1,16 @@
 //import { prisma } from "@prisma/client";
 import { prisma } from "../config/database";
 import { Answer } from "@prisma/client";
+import { AnswerData } from "../types/answerTypes";
 
 
-export async function createAnswer(answer:Answer) {
+export async function createAnswer(answerData:AnswerData) {
 
-    const { answer:answerData, answeredBy, questionId } = answer;
+    const { answer, answeredBy, questionId } = answerData;
     
     await prisma.answer.create({ 	data: {
-		answeredBy: answeredBy,
-		answer: answerData,
-        questionId: questionId
+		answeredBy: String(answeredBy),
+		answer: String(answer),
+    questionId: Number(questionId)
 	} });
 }
